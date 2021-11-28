@@ -1,23 +1,53 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import Account from "./Components/Account"
+import FundTransfer from "./Components/FundTransfer"
+
+import Navbar from './Navbar';
+import Login from './Components/Login';
+import MiniStatement from './Components/MiniStatement';
+import Layout from './Components/Layout';
+import { Logout } from './Logout';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        {/* <Navbar/> */}
+        <Switch>
+          <Route path="/account" exact>
+            <Layout>
+              <Navbar />
+              <Account />
+            </Layout>
+          </Route>
+
+          <Route path="/fundtransfer" exact>
+            <Layout>
+              <Navbar />
+              <FundTransfer />
+            </Layout>
+
+          </Route>
+          <Route path="/ministatement" exact>
+            <Layout>
+              <Navbar />
+              <MiniStatement />
+            </Layout>
+          </Route>
+
+          <Route path="/" exact>
+            <Login />
+          </Route>
+
+          <Route path="/logout" exact>
+            <Logout />
+          </Route>
+        </Switch>
+      </Router>
+
+
     </div>
   );
 }
